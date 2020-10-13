@@ -19,21 +19,21 @@ const editTaskModalRender = () => {
     const alertEditTask = document.createElement('p');
     alertEditTask.id = 'alertEditTask';
     alertEditTask.className = 'alertEditTask';
-    alertEditTask.textContent = `¿Quieres eliminar esta tarea?`
+    alertEditTask.textContent = `Are you sure you want to delete?`
     popEditTask.appendChild(alertEditTask);
 
     const cancelEditTaskButton = document.createElement('button');
     cancelEditTaskButton.id = 'cancelEditTaskButton';
     cancelEditTaskButton.className = 'cancelEditTaskButton';
     cancelEditTaskButton.type = 'button';
-    cancelEditTaskButton.textContent = 'Cancelar';
+    cancelEditTaskButton.textContent = 'Cancel';
     popEditTask.appendChild(cancelEditTaskButton);
 
     const deleteTaskButton = document.createElement('button');
     deleteTaskButton.id = 'deleteTaskButton';
     deleteTaskButton.className = 'deleteTaskButton';
     deleteTaskButton.type = 'button';
-    deleteTaskButton.textContent = 'Eliminar Tarea';
+    deleteTaskButton.textContent = 'Delete';
     popEditTask.appendChild(deleteTaskButton);
     
     // Secondary Functions

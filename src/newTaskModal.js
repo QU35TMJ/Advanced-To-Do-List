@@ -4,7 +4,7 @@ import { plusTaskButton, userProjects, currentProjectName } from './index';
 import { createTodo } from './createTodo';
 import { saveNewProject } from './localStorage';
 import format from 'date-fns/format';
-import { es } from 'date-fns/locale';
+import { enUS, es } from 'date-fns/locale';
 
 // Main Function
 
@@ -32,7 +32,7 @@ const newTaskModalRender = () => {
     // New Task
     let modalTitle = document.createElement('h3');
     modalTitle.className = 'modalTitle';
-    modalTitle.textContent = 'Nueva Tarea';
+    modalTitle.textContent = 'New Todo';
     popTaskModal.appendChild(modalTitle);
 
     // Form
@@ -47,14 +47,14 @@ const newTaskModalRender = () => {
     taskTitle.className = 'taskTitle';
     taskTitle.required = true;
     taskTitle.maxLength = 20;
-    taskTitle.placeholder = 'Título';
+    taskTitle.placeholder = 'Title';
     modalForm.appendChild(taskTitle);
 
     // Notes Input
     let notes = document.createElement('textarea');
     notes.id = 'notes';
     notes.className = 'notes';
-    notes.placeholder = 'Descripción';
+    notes.placeholder = 'Description';
     modalForm.appendChild(notes);
 
     // Due Date Input
@@ -62,7 +62,7 @@ const newTaskModalRender = () => {
     dueDate.id = 'dueDate';
     dueDate.className = 'dueDate';
     dueDate.type = 'date';
-    dueDate.placeholder = 'Fecha';
+    dueDate.placeholder = 'Due Date';
     dueDate.required = true;
     modalForm.appendChild(dueDate);
 
@@ -74,25 +74,25 @@ const newTaskModalRender = () => {
     let labelPriorityButtons = document.createElement('label');
     labelPriorityButtons.className = 'labelPriorityButtons';
     labelPriorityButtons.setAttribute('for', 'priority');
-    labelPriorityButtons.textContent = 'Prioridad';
+    labelPriorityButtons.textContent = 'Priority';
     priority.appendChild(labelPriorityButtons);
 
     let lowPriority = document.createElement('span');
     lowPriority.id = 'lowPriority';
     lowPriority.className = 'lowPrioritySelected';
-    lowPriority.textContent = 'Baja';
+    lowPriority.textContent = 'Low';
     priority.appendChild(lowPriority);
 
     let mediumPriority = document.createElement('span');
     mediumPriority.id = 'mediumPriority';
     mediumPriority.className = 'mediumPriority';
-    mediumPriority.textContent = 'Media';
+    mediumPriority.textContent = 'Medium';
     priority.appendChild(mediumPriority);
 
     let highPriority = document.createElement('span');
     highPriority.id = 'highPriority';
     highPriority.className = 'highPriority';
-    highPriority.textContent = 'Alta';
+    highPriority.textContent = 'High';
     priority.appendChild(highPriority);
 
     modalForm.appendChild(priority);
@@ -102,7 +102,7 @@ const newTaskModalRender = () => {
     cancelNewTaskButton.id = 'cancelNewTaskButton';
     cancelNewTaskButton.className = 'cancelNewTaskButton';
     cancelNewTaskButton.type = 'button';
-    cancelNewTaskButton.textContent = 'Cancelar';
+    cancelNewTaskButton.textContent = 'Cancel';
     modalForm.appendChild(cancelNewTaskButton);
 
     // Submit Button
@@ -110,7 +110,7 @@ const newTaskModalRender = () => {
     submitTask.id = 'submitTask';
     submitTask.className = 'submitTask';
     submitTask.type = 'submit';
-    submitTask.value = 'Crear Tarea';
+    submitTask.value = 'Add';
     modalForm.appendChild(submitTask);
 
     // Secondary Functions
@@ -147,7 +147,7 @@ const newTaskModalRender = () => {
         let todoTitle = taskTitle.value;
         if (todoTitle != '') {
             let todoNotes = notes.value;
-            let todoDueDate = format(new Date(dueDate.value), "dd MMMM yyyy", {locale: es});
+            let todoDueDate = format(new Date(dueDate.value), "dd MMMM yyyy", {locale: enUS});
             let todoPriority;
             if (lowPriority.className =='lowPrioritySelected') {
                 todoPriority = 1;

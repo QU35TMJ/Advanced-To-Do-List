@@ -46,7 +46,7 @@ let projectCount = 1;
 let currentProject;
 let userProjects = JSON.parse(window.localStorage.getItem("userProjects") || "[]");
 if (userProjects.length === 0) {
-    userProjects.push(createProject(projectCount, 'Proyecto Prueba'));
+    userProjects.push(createProject(projectCount, 'Default Project'));
     projectCount += 1;
     currentProject = userProjects[0];
     saveNewProject();

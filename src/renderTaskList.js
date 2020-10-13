@@ -51,13 +51,13 @@ const renderTaskList = (userProjects) => {
                 let taskItemPriority = document.createElement('p');
                 taskItemPriority.className = 'taskItemPriority';
                 if (task.priority == 1) {
-                    taskItemPriority.textContent = 'Prioridad Baja';
+                    taskItemPriority.textContent = 'Priority-Low';
                     taskItemPriority.style.textDecorationColor = 'yellow';
                 } else if (task.priority == 2) {
-                    taskItemPriority.textContent = 'Prioridad Media';
+                    taskItemPriority.textContent = 'Priority-Medium';
                     taskItemPriority.style.textDecorationColor = 'orange';
                 } else {
-                    taskItemPriority.textContent = 'Prioridad Alta';
+                    taskItemPriority.textContent = 'Priority-High';
                     taskItemPriority.style.textDecorationColor = 'red';
                 }
                 taskListItem.appendChild(taskItemPriority);
@@ -65,7 +65,7 @@ const renderTaskList = (userProjects) => {
                 let labelTaskItemCheck = document.createElement('label');
                 labelTaskItemCheck.className = 'labelTaskItemCheck';
                 labelTaskItemCheck.setAttribute('for', `taskItemCheck_${task.title}`);
-                labelTaskItemCheck.textContent = 'Tarea Completada';
+                labelTaskItemCheck.textContent = 'Completed';
                 taskListItem.appendChild(labelTaskItemCheck);
 
                 let taskItemCheck = document.createElement('input');

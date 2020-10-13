@@ -275,7 +275,7 @@ h1, h2, h3 {
     border: inherit;
     justify-self: center;
     align-self: center;
-    margin-left: 2px;
+    margin-left: 0.8px;
     font-size: 0.9em;
     text-align: inherit;
 }
@@ -304,7 +304,7 @@ h1, h2, h3 {
 .mediumPriority, .mediumPrioritySelected {
     grid-area: mediumPriority;
     background-color: orange;
-    text-indent: 3px;
+    text-indent: 2px;
 }
 
 .highPriority, .highPrioritySelected {
@@ -641,7 +641,7 @@ h1, h2, h3 {
     .highPriority, .highPrioritySelected {
         width: 32px;
         height: 60%;
-        margin-left: 2px;
+        margin-left: 0.8px;
         font-size: 0.8em;
     }
 

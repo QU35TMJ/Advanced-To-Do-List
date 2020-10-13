@@ -24,7 +24,7 @@ const newProjectModalRender = () => {
     projectTitle.className = 'projectTitle';
     projectTitle.required = true;
     projectTitle.maxLength = 20;
-    projectTitle.placeholder = 'Nombre Proyecto';
+    projectTitle.placeholder = 'New Project';
     popProjectModal.appendChild(projectTitle);
 
     // Cancel Button
@@ -32,7 +32,7 @@ const newProjectModalRender = () => {
     cancelButton.id = 'cancelButton';
     cancelButton.className = 'cancelButton';
     cancelButton.type = 'button';
-    cancelButton.textContent = 'Cancelar';
+    cancelButton.textContent = 'Cancel';
     popProjectModal.appendChild(cancelButton);
 
     // Submit Project Button
@@ -40,7 +40,7 @@ const newProjectModalRender = () => {
     submitProject.id = 'submitProject';
     submitProject.className = 'submitProject';
     submitProject.type = 'submit';
-    submitProject.value = 'Crear Proyecto';
+    submitProject.value = 'Add';
     popProjectModal.appendChild(submitProject);
 
     // Secondary Functions
