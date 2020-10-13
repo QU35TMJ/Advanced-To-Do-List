@@ -1,0 +1,882 @@
+/* General*/
+html {
+    font-size: 100%;
+    font-family: 'Handlee';
+}
+
+body {
+    width: 100%;
+    height: 100%;
+    margin: 0px;
+    color: #004e64;
+}
+
+h1, h2, h3 {
+    margin: 0px;
+    text-align: center;
+}
+
+/* Top Bar*/
+.topBar {
+    display: inline-grid;
+    grid-template-columns: 33.33% 33.33% 33.33%;
+    width: 100%;
+    height: 90px;
+    position: fixed;
+    background-color: white;
+    z-index: 1;
+    box-shadow: 0 6px 15px 0 rgba(0,0,0,0.07);
+}
+
+.burger {
+    padding: 5px;
+    margin: 14px;
+    float: left;
+} 
+
+.burgerIcon {
+    padding: 3px;
+    margin: 10px;
+    cursor: pointer;
+    width: 37px;
+    height: 26px;
+}
+
+.bar1, .bar2, .bar3, .vertLine, .horiLine {
+    height: 5px;
+    background-color: #004e64;
+    margin: 2px;
+    border-radius: 2px;
+}
+
+.bar1, .bar2, .bar3 {
+    width: 35px;
+    float: left;
+    transition: 0.4s;
+}
+
+.bar2 {
+    width: 30px;
+    margin-left: 4px;
+}
+
+.change .bar1 {
+    -webkit-transform: rotate(-45deg) translate(-5px, 5px);
+    transform: rotate(-45deg) translate(-5px, 5px);
+}
+  
+.change .bar2 {
+    opacity: 0;
+}
+  
+.change .bar3 {
+    -webkit-transform: rotate(45deg) translate(-7px, -8px);
+    transform: rotate(45deg) translate(-7px, -8px);
+}
+
+.vertLine, .horiLine {
+    width: 20px;
+}
+
+.horiLine {
+    position: absolute;
+    margin-top: -7px;
+}
+
+.vertLine {
+    transform: rotate(90deg);
+    margin-top: 6px;
+}
+
+.changeToCross {
+    -webkit-transform: rotate(45deg);
+    transform: rotate(45deg);
+}
+
+.title {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.newTaskButton {
+    display: inline-flex;
+    justify-content: center;
+    padding-top: 25px;
+}
+
+.newTaskIcon {
+    display: block;
+    align-items: center;
+    height: 40px;
+    width: 200px;
+    background-color: white;
+    padding: 5px;
+    border-radius: 25px;
+    transition: 0.4s;
+    cursor: pointer;
+}
+
+.newTaskPlus {
+    display: inline-block;
+    transition: 0.4s;
+    padding-bottom: 5px;
+}
+
+.newTaskText {
+    padding-left: 5px;
+    font-size: 2em;
+}
+
+/* Side Bar */
+.newProjectButton {
+    margin-left: 80px;
+}
+
+.newProjectText {
+    padding-left: 5px;
+    font-size: 1.55em;
+}
+
+.sideBar {
+    position: fixed;
+    top: 91px;
+    width: 0;
+    height: 100%;
+    z-index: 1;
+    padding-top: 30px;
+    overflow: auto;
+    box-shadow: 0 6px 15px 0 rgba(0,0,0,0.3);
+    transition: 0.4s;
+}
+
+/* Content */
+.content {
+    position: absolute;
+    justify-content: center;
+    top: 91px;
+    width: 100%;
+    height: auto;
+    transition: 0.4s;
+}
+
+/* New Task Modal */
+.newTaskModal, .newProjectModal, 
+.editProjectModal, .editTaskModal {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    padding: 250px 35%;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0,0,0,0.4);
+}
+
+.popTaskModal, .popProjectModal,
+.popEditProject, .popEditTask {
+    display: flex;
+    flex-direction: column;
+    width: 30%;
+    height: 370px;
+    background-color: white;
+    border-radius: 10px;
+}
+
+.projectSelected {
+    padding-top: 5px;
+    font-size: 2em;
+}
+
+.modalTitle {
+    font-size: 1.5em;
+}
+
+.modalForm {
+    flex: 3;
+    display: grid;
+    grid-template-columns:150px 150px;
+    grid-template-rows: 60px 60px 50px 50px;
+    grid-template-areas: 
+        "title title"
+        "notes notes"
+        "date priority"
+        "cancel submit";
+    column-gap: 30px;
+    row-gap: 10px;
+    justify-content: center;
+    margin: 0 10px 10px 10px;
+}
+
+.taskTitle, .notes, .dueDate, .priority, .projectTitle {
+    color: inherit;
+    font-family: inherit;
+    border: 1px solid #004e64;
+    border-radius: 4px;
+    text-indent: 5px;
+}
+
+.taskTitle {
+    align-self: flex-end;
+    height: 35px;
+    grid-area: title;
+    font-size: 1.4em;
+}
+
+.taskTitle:focus, .notes:focus, 
+.dueDate:focus, .projectTitle:focus {
+    box-shadow: 2px 2px 8px 2px #004e64;
+    outline: none;
+}
+
+.notes {
+    align-self: flex-end;
+    height: 50px;
+    grid-area: notes;
+    font-size: 1.2em;
+}
+
+.dueDate {
+    color: inherit;
+    grid-area: date;
+    font-size: 0.90em;
+    border: 1px solid;
+}
+
+.priority {
+    grid-area: priority;
+    background-color: white;
+    display: grid;
+    grid-template-columns: 33% 33% 33%;
+    grid-template-rows: 5px 40px;
+    grid-template-areas: 
+        "label label label"
+        "lowPriority mediumPriority highPriority";
+}
+
+.labelPriorityButtons {
+    grid-area: label;
+    position: relative;
+    height: 20px;
+    width: 65px;
+    top: -11px;
+    left: 5px;
+    background-color: white;
+    padding: 0 3px;
+}
+
+.lowPriority, .lowPrioritySelected,
+.mediumPriority, .mediumPrioritySelected,
+.highPriority, .highPrioritySelected {
+    width: 42px;
+    height: 70%;
+    border: inherit;
+    justify-self: center;
+    align-self: center;
+    margin-left: 2px;
+    font-size: 0.9em;
+    text-align: inherit;
+}
+
+.lowPriority, .mediumPriority, .highPriority {
+    opacity: 0.5;
+}
+
+.lowPrioritySelected, .mediumPrioritySelected, .highPrioritySelected {
+    opacity: 1;
+}
+
+.lowPriority:hover, .lowPrioritySelected, 
+.mediumPriority:hover, .mediumPrioritySelected,
+.highPriority:hover, .highPrioritySelected {
+    opacity: 1;
+    cursor: pointer;
+}
+
+.lowPriority, .lowPrioritySelected {
+    grid-area: lowPriority;
+    background-color: yellow;
+    text-indent: 7px;
+}
+
+.mediumPriority, .mediumPrioritySelected {
+    grid-area: mediumPriority;
+    background-color: orange;
+    text-indent: 3px;
+}
+
+.highPriority, .highPrioritySelected {
+    grid-area: highPriority;
+    background-color: red;
+    text-indent: 8px;
+}
+
+.cancelNewTaskButton {
+    grid-area: cancel;
+}
+
+.submitTask {
+    grid-area: submit;
+}
+
+.cancelNewTaskButton, .submitTask, 
+.cancelButton, .submitProject, 
+.deleteProjectButton, .cancelEditButton,
+.cancelEditTaskButton, .deleteTaskButton {
+    padding-top: 3px;
+    border: none;
+    border-radius: 5px;
+    font-family: inherit;
+    font-size: 1.1em;
+    font-weight: bold;
+    color: white;
+    background-color: #004e64;
+    cursor: pointer;
+}
+
+.cancelNewTaskButton:hover, .submitTask:hover, 
+.cancelButton:hover, .submitProject:hover,
+.deleteProjectButton:hover, .cancelEditButton:hover,
+.cancelEditTaskButton:hover, .deleteTaskButton:hover {
+    color: #004e64;
+    background-color: white;
+    border: 4px solid #004e64;
+} 
+
+/* New Project Modal */
+.popProjectModal {
+    display: grid;
+    grid-template-columns: 150px 150px;
+    grid-template-rows: 60px 50px;
+    grid-template-areas: 
+        "projectTitle projectTitle"
+        "cancelButton submitProject";
+    column-gap: 30px;
+    row-gap: 10px;
+    justify-content: center;
+    margin: 0 10px 10px 10px;
+    padding-top: 100px;
+    height: 250px;
+}
+
+.projectTitle {
+    grid-area: projectTitle;
+    align-self: center;
+    height: 35px;
+    font-size: 1.4em;
+}
+
+.cancelButton {
+    grid-area: cancelButton;
+}
+
+.submitProject {
+    grid-area: submitProject;
+}
+
+/* Render Project List */
+.renderProjectItem {
+    display: flex;
+    margin-left: 85px;
+}
+
+.editProject, .editTask {
+    display: inline-block;
+    margin: 20px 8px 5px 5px;
+    width: 25px;
+    height: 25px;
+    background-color: white;
+    border-radius: 20%;
+    cursor: pointer;
+}
+
+.editProject:hover, .editTask:hover {
+    box-shadow: 1px 1px 6px 1px #004e64;
+}
+
+.editProjectDot_1, .editProjectDot_2, .editProjectDot_3 {
+    height: 4px;
+    width: 4px;
+    background-color: #004e64;
+    margin: 3px 11px;
+    border-radius: 50%;
+}
+
+.projectName {
+    font-size: 1.3em;
+    cursor: pointer;
+}
+
+.projectName:hover {
+    text-decoration: underline;
+}
+
+/* Edit Project Modal, Edit Task Modal */
+.popEditProject, .popEditTask {
+    display: grid;
+    height: 200px;
+    justify-content: center;
+    padding: 50px 30px;
+    column-gap: 30px;
+    row-gap: 45px;
+}
+
+.popEditProject {
+    grid-template-columns: 150px 150px;
+    grid-template-rows: 60px 60px;
+    grid-template-areas: 
+        "alertEditProject alertEditProject"
+        "cancelEditButton deleteProjectButton";
+}
+
+.popEditTask {
+    grid-template-columns: 150px 150px;
+    grid-template-rows: 20px 60px 60px;
+    row-gap: 20px;
+    grid-template-areas: 
+        "taskTitleToDelete taskTitleToDelete"
+        "alertEditTask alertEditTask"
+        "cancelEditTaskButton deleteTaskButton";
+}
+
+.cancelEditButton {
+    grid-area: cancelEditButton;
+}
+
+.cancelEditTaskButton {
+    grid-area: cancelEditTaskButton;
+}
+
+.deleteEditButton {
+    grid-area: deleteEditButton;
+}
+
+.deleteTaskButton {
+    grid-area: deleteTaskButton;
+}
+
+.alertEditProject, .alertEditTask, 
+.taskTitleToDelete {
+    text-align: center;
+    font-size: 1.1em;
+}
+
+.alertEditProject {
+    grid-area: alertEditProject;
+}
+
+.alertEditTask {
+    grid-area: alertEditTask;
+}
+
+.taskTitleToDelete {
+    grid-area: taskTitleToDelete;
+    font-size: 1.4em;
+}
+
+/* Task Project List */
+.taskListProject {
+    display: flex;
+    flex-direction: column;
+    margin-left: 30%;
+}
+
+.taskListItem {
+    display: grid;
+    height: 150px;
+    width: 55%;
+    margin-top: 2em;
+    justify-content: center;
+    align-content: center;
+    border: 3px solid #004e64;
+    border-radius: 10px;
+    box-shadow: 0 6px 15px 0 rgba(0,0,0,0.07);
+    grid-template-columns: 40px 180px 180px 180px 40px;
+    grid-template-rows: 45px 40px 40px;
+    grid-template-areas: 
+        "editTask taskTitle taskTitle taskTitle taskTitle"
+        "editTask taskDate taskPriority labelTaskCheck taskCheck"
+        "editTask taskNotes taskNotes taskNotes taskNotes";
+}
+
+.editTask {
+    grid-area: editTask;
+    margin: 45px 10px;
+}
+
+.taskItemTitle {
+    grid-area: taskTitle;
+    font-size: 1.5em;
+}
+
+.taskItemDate {
+    grid-area: taskDate;
+    margin: 0;
+    font-size: 1.3em;
+}
+
+.taskItemPriority {
+    grid-area: taskPriority;
+    text-decoration: underline;
+    text-decoration-style: double;
+    height: 2em;
+    width: 8em;
+    margin: 0;
+    border-radius: 5px;
+    font-size: 1.3em;
+}
+
+.labelTaskItemCheck {
+    grid-area: labelTaskCheck;
+    font-size: 1.3em;
+}
+
+.taskItemCheck {
+    grid-area: taskCheck;
+    margin-top: 5px;
+    height: 15px;
+    width: 15px;
+    cursor: pointer;
+    border: 1px solid #004e64;
+    border-radius: 25%;
+}
+
+.taskItemCheck:hover {
+    box-shadow: 1px 1px 2px 1px #004e64;
+}
+
+.taskItemNotes {
+    grid-area: taskNotes;
+    font-size: 1.1em;
+}
+
+.editTask, .taskItemTitle, .taskItemDate,
+.taskItemPriority, .taskItemCheck, .taskItemNotes,
+.labelTaskItemCheck {
+    display: inline-block;
+    text-align: center;
+}
+
+/* Responsive */
+
+@media (max-width: 1600px){
+    .taskListItem {
+        height: 250px;
+        margin-top: 0.5em;
+        grid-template-columns: 40px 180px 180px 40px;
+        grid-template-rows: 45px 40px 40px 40px;
+        grid-template-areas: 
+            "editTask taskTitle taskTitle taskTitle"
+            "taskDate taskDate taskDate taskDate"
+            "taskPriority taskPriority labelTaskCheck taskCheck"
+            "taskNotes taskNotes taskNotes taskNotes";
+    }
+
+    .editTask {
+        margin: 3px 
+    }
+}
+
+@media (max-width: 1300px) {
+    .renderProjectItem, .newProjectButton {
+        margin-left: 20px;
+    }
+}
+
+@media (max-width: 1200px){
+    .taskListProject {
+        margin-left: 35%;
+    }
+    .taskListItem {
+        height: 250px;
+        width: 40%;
+        margin-top: 0.5em;
+        grid-template-columns: 40px 180px 40px;
+        grid-template-rows: 45px 40px 40px 40px 40px;
+        grid-template-areas: 
+            "editTask taskTitle ."
+            "taskDate taskDate taskDate"
+            "taskPriority taskPriority taskPriority"
+            "labelTaskCheck labelTaskCheck taskCheck"
+            "taskNotes taskNotes taskNotes";
+    }
+
+    .editTask {
+        margin: 3px 
+    }
+
+    .taskItemPriority {
+        margin: 0 50px;
+    }
+
+    .newTaskModal, .popProjectModal {
+        padding-top: 50px;
+    }
+
+    .modalForm {
+        grid-template-columns:120px 120px;
+        grid-template-rows: 60px 60px 50px 50px;
+        grid-template-areas: 
+            "title title"
+            "notes notes"
+            "date priority"
+            "cancel submit";
+        column-gap: 30px;
+        row-gap: 10px;
+        margin: 0 10px 10px 10px;
+    }
+
+    .priority {
+        grid-template-columns: 30% 30% 30%;
+        grid-template-rows: 5px 40px;
+        grid-template-areas: 
+            "label label label"
+            "lowPriority mediumPriority highPriority";
+    }
+
+    .lowPriority, .lowPrioritySelected,
+    .mediumPriority, .mediumPrioritySelected,
+    .highPriority, .highPrioritySelected {
+        width: 32px;
+        height: 60%;
+        margin-left: 2px;
+        font-size: 0.8em;
+    }
+
+    .lowPriority, .lowPrioritySelected,
+    .mediumPriority, .mediumPrioritySelected,
+    .highPriority, .highPrioritySelected {
+        background-color: transparent;
+        border: none;;
+    }
+
+    .lowPriority, .lowPrioritySelected {
+        text-decoration: underline;
+        text-decoration-color: yellow;
+    }
+
+    .mediumPriority, .mediumPrioritySelected {
+        text-decoration: underline;
+        text-decoration-color: orange;
+    }
+
+    .highPriority, .highPrioritySelected {
+        text-decoration: underline;
+        text-decoration-color: red;
+    }
+
+    .popProjectModal {
+        grid-template-columns: 150px;
+        grid-template-rows: 60px 50px 50px;
+        grid-template-areas: 
+            "projectTitle"
+            "submitProject"
+            "cancelButton";
+    }
+}
+
+@media (max-width: 1000px){
+    html {
+        font-size: 80%;
+    }
+    
+    .taskListItem {
+        grid-template-columns: 20px 150px 20px;
+        grid-template-rows: 45px 40px 40px 40px 40px;
+        grid-template-areas: 
+            "editTask taskTitle ."
+            "taskDate taskDate taskDate"
+            "taskPriority taskPriority taskPriority"
+            "labelTaskCheck labelTaskCheck taskCheck"
+            "taskNotes taskNotes taskNotes";
+    }
+
+    .modalForm {
+        grid-template-columns:100px 100px;
+        grid-template-rows: 60px 60px 40px 60px;
+        grid-template-areas: 
+            "title title"
+            "notes notes"
+            "date priority"
+            "cancel submit";
+        column-gap: 30px;
+        row-gap: 10px;
+        margin: 0 10px 10px 10px;
+    }
+
+    .popEditProject {
+        grid-template-columns: 120px 120px;
+        grid-template-rows: 50px 50px;
+        column-gap: 15px;
+        row-gap: 30px;
+    }
+
+    .popEditTask {
+        grid-template-columns: 120px 120px;
+        grid-template-rows: 20px 60px 60px;
+        row-gap: 20px;
+    }
+
+    .taskItemPriority {
+        margin: 0 30px;
+    }
+}
+
+@media (max-width: 850px) {
+    .modalForm {
+        grid-template-columns:80px 80px;
+        grid-template-rows: 60px 60px 40px 60px;
+    }
+
+    .popEditTask {
+        row-gap: 10px;
+    }
+
+    .taskItemPriority {
+        margin: 0 30px;
+    }
+
+    .renderProjectItem, .newProjectButton {
+        margin-left: 10px;
+    }
+
+    .projectName {
+        margin: 23px 0;
+    }
+}
+
+@media (max-width: 750px) {
+    html {
+        font-size: 70%;
+    }
+
+    h1 {
+        display: none;
+    }
+
+    .modalForm {
+        height: auto;
+        grid-template-columns:100px ;
+        grid-template-rows: 60px 60px 40px 40px 30px 30px;
+        grid-template-areas: 
+            "title"
+            "notes "
+            "date"
+            "priority"
+            "submit"
+            "cancel";
+        row-gap: 5px;
+    }
+
+    .taskListProject {
+        margin-left: 25%;
+    }
+
+    .newTaskText {
+        display: none;
+    }
+
+    .newTaskPlus {
+        margin-left: 30px;
+    }
+
+    .editTask {
+        margin: 0;
+    }
+
+    .taskListItem {
+        grid-template-columns: 15px 120px;
+        grid-template-rows: 45px 40px 40px 40px 40px 40px;
+        width: 60%;
+        grid-template-areas: 
+            "editTask taskTitle"
+            "taskDate taskDate"
+            "taskPriority taskPriority"
+            "labelTaskCheck labelTaskCheck"
+            ". taskCheck"
+            "taskNotes taskNotes";
+    }
+
+    .taskItemPriority {
+        margin: 0 10px;
+    }
+
+    .taskItemCheck {
+        margin-left: 45px;
+    }
+
+    .renderProjectItem, .newProjectButton {
+        margin-left: 5px;
+    }
+
+    .newProjectText {
+        display: none;
+    }
+
+    .editProject {
+        margin: 0;
+        padding: 0;
+    }
+
+    .projectName {
+        margin: 0;
+        font-size: 0.95em;
+    }
+
+    .popEditProject {
+        width: 40%;
+        grid-template-columns: 150px;
+        grid-template-rows: 80px 50px 50px;
+        row-gap: 10px;
+        grid-template-areas: 
+        "alertEditProject "
+        "deleteProjectButton"
+        "cancelEditButton";
+    }
+
+    .editProjectModal {
+        padding: 100px 25%;
+    }
+
+    .popEditTask {
+        grid-template-columns: 150px;
+        grid-template-rows: 20px 60px 60px 60px;
+        grid-template-areas: 
+            "taskTitleToDelete"
+            "alertEditTask"
+            "deleteTaskButton"
+            "cancelEditTaskButton";
+    }
+
+    .editTaskModal {
+        padding: 100px 25%;
+    }
+
+    .popProjectModal {
+        grid-template-columns: 80px;
+    }
+}
+
+@media (max-width: 300px) {
+    .modalForm {
+        grid-template-columns:100px ;
+    }
+
+    .editProjectModal {
+        padding: 100px 20%;
+    }
+
+    .taskListItem {
+        width: 75%;
+    }
+
+    .newTaskPlus {
+        margin-left: 15px;
+    }
+
+    .projectName {
+        font-size: 0.9em;
+    }
+}
