@@ -1,13 +1,52 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css2?family=Handlee&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="main.css">
-    <title>Document</title>
+    <title>TODO App</title>
 </head>
 <body>
-    <div id="content"></div>
+    <header id="topBar" class="topBar">
+        <diV id="burger" class="burger">
+            <div id="burgerIcon" class="burgerIcon">
+                <div class="bar1"></div>
+                <div class="bar2"></div>
+                <div class="bar3"></div>
+            </div>
+        </diV>
+        <div class="title">
+            <h1>TODO App</h1>
+            <h2 id="currentProject"></h2>
+        </div>
+        <div id ="newTaskButton" class="newTaskButton">
+            <div id="newTaskIcon" class="newTaskIcon">
+                <div id="newTaskPlus" class="newTaskPlus">
+                    <div class="vertLine"></div>
+                    <div class="horiLine"></div>
+                </div>
+                <span id="newTaskText" class="newTaskText">Nueva Tarea</span>
+            </div>
+        </div>
+    </header>
+    <main>
+        <div id="sideBar" class="sideBar">
+            <div id ="newProjectButton" class="newProjectButton">
+                <div id="newProjectIcon" class="newTaskIcon">
+                    <div id="newProjectPlus" class="newTaskPlus">
+                        <div class="vertLine"></div>
+                        <div class="horiLine"></div>
+                    </div>
+                    <span class="newProjectText">Nuevo Proyecto</span>
+                </div>
+            </div>
+            <div id="projectList" class="projectList"></div>
+        </div>
+        <div id="content" class="content">
+            <div class="taskListProject"></div>
+        </div>
+    </main>
     <script src="main.js"></script>
 </body>
 </html>
